@@ -1,4 +1,4 @@
-# Telegram-transmission-bot
+# Transmission-telegram-private-bot
 
 Телеграм бот, для личного использования.  
 Если ему отправить torrent file или magnet ссылку, то через rpc подает запросы на transmission сервер.  
@@ -31,8 +31,7 @@ docker build -t transmission-bot . \
 --build-arg TIME_SHEDULE_SEC=<time_shedule_sec> \
 --build-arg SOCKS5_LOGIN=<socks5_login> \
 --build-arg SOCKS5_PASSWORD=<socks5_password> \
---build-arg SOCKS5_ADDRESS=<socks5_address> \
---restart unless-stopped
+--build-arg SOCKS5_ADDRESS=<socks5_address>
 ```
 
 Каждое из значений:
