@@ -84,8 +84,6 @@ def callback_worker(call):
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=info, reply_markup=keyboard)
         elif call.data == f'del_agree_{torrent.hashStr}':
             tc.del_torrent(torrent, delete_data=True)
-
-
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"{torrent.name} удален")
         elif call.data == f'start_{torrent.hashStr}':
             tc.start_torrent(torrent)

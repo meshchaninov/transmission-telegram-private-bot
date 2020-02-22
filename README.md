@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Telegram-transmission-bot
-=======
 # Transmission-telegram-private-bot
->>>>>>> d9c1cc53684541bb14ba41634297ef7d93adcded
 
 Телеграм бот, для личного использования.  
 Если ему отправить torrent file или magnet ссылку, то через rpc подает запросы на transmission сервер.  
@@ -25,22 +21,20 @@
 ```bash
 git clone https://github.com/meshchaninov/transmission-telegram-private-bot.git
 cd transmission-telegram-private-bot-master
-docker build -t transmission-bot . \
---build-arg TOKEN=<token> \
---build-arg ACCESS=<access> \
---build-arg TRANSMISSION_URL=<transmission_url> \
---build-arg TRANSMISSION_LOGIN=<login> \
---build-arg TRANSMISSION_PASSWORD=<password> \
---build-arg TRANSMISSION_PORT=<transmission_port> \
---build-arg TIME_SHEDULE_SEC=<time_shedule_sec> \
---build-arg SOCKS5_LOGIN=<socks5_login> \
---build-arg SOCKS5_PASSWORD=<socks5_password> \
-<<<<<<< HEAD
---build-arg SOCKS5_ADDRESS=<socks5_address> \
---restart unless-stopped
-=======
---build-arg SOCKS5_ADDRESS=<socks5_address>
->>>>>>> d9c1cc53684541bb14ba41634297ef7d93adcded
+docker build -t meshchaninov/transmission-bot
+docker create --name transmission-bot \
+-e TOKEN=<token> \
+-e ACCESS=<access> \
+-e TRANSMISSION_URL=<transmission_url> \
+-e TRANSMISSION_LOGIN=<login> \
+-e TRANSMISSION_PASSWORD=<password> \
+-e TRANSMISSION_PORT=<transmission_port> \
+-e TIME_SHEDULE_SEC=<time_shedule_sec> \
+-e SOCKS5_LOGIN=<socks5_login> \
+-e SOCKS5_PASSWORD=<socks5_password> \
+-e SOCKS5_ADDRESS=<socks5_address> \
+--restart unless-stopped \
+meshchaninov/transmission-bot
 ```
 
 Каждое из значений:
@@ -55,8 +49,4 @@ docker build -t transmission-bot . \
 -   SOCKS5_PASSWORD - пароль socks5 сервера
 -   SOCKS5_ADDRESS - адресс socks5 сервера
 
-<<<<<<< HEAD
-**Опять же повторю, делалось для личного использования. Из-за этого реализация топорна и отсутствует гипкость.**
-=======
 **Опять же повторю, делалось для личного использования. Из-за этого реализация топорна и отсутствует гибкость.**
->>>>>>> d9c1cc53684541bb14ba41634297ef7d93adcded
