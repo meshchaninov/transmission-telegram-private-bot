@@ -21,7 +21,7 @@
 ```bash
 git clone https://github.com/meshchaninov/transmission-telegram-private-bot.git
 cd transmission-telegram-private-bot-master
-docker build -t meshchaninov/transmission-bot
+docker build -t meshchaninov/transmission-bot .
 docker create --name transmission-bot \
 -e TOKEN=<token> \
 -e ACCESS=<access> \
