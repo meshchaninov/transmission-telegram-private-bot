@@ -1,0 +1,17 @@
+astroid==2.3.3
+certifi==2019.11.28
+chardet==3.0.4
+gunicorn==20.0.4
+idna==2.6
+isort==4.3.21
+lazy-object-proxy==1.4.3
+mccabe==0.6.1
+pylint==2.4.4
+PySocks==1.7.1
+pyTelegramBotAPI==3.6.7
+requests==2.18.4
+schedule==0.6.0
+six==1.14.0
+transmissionrpc==0.11
+urllib3==1.22
+wrapt==1.11.2
