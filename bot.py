@@ -79,6 +79,10 @@ def callback_worker(call):
             keyboard.add(types.InlineKeyboardButton(text=f'Да', callback_data=f'del_agree_{torrent.hashStr}'))
             keyboard.add(types.InlineKeyboardButton(text=f'Нет', callback_data=f'del_disagree_{torrent.hashStr}'))
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"ТЫ УВЕРЕН?", reply_markup=keyboard)
+        elif call.data == f'pause_{torrent.hashStr}':
+            tc.stop_torrent(torrent)
+            text, keyboard = torrent_info(torrent.hashStr)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=text, reply_markup=keyboard)
         elif call.data == f'del_disagree_{torrent.hashStr}':
             info, keyboard = torrent_info(torrent.hashStr)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=info, reply_markup=keyboard)
@@ -87,10 +91,6 @@ def callback_worker(call):
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"{torrent.name} удален")
         elif call.data == f'start_{torrent.hashStr}':
             tc.start_torrent(torrent)
-            text, keyboard = torrent_info(torrent.hashStr)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=text, reply_markup=keyboard)
-        elif call.data == f'pause_{torrent.hashStr}':
-            tc.stop_torrent(torrent)
             text, keyboard = torrent_info(torrent.hashStr)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=text, reply_markup=keyboard)
         elif call.data == 'list':
