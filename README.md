@@ -22,7 +22,8 @@
 git clone https://github.com/meshchaninov/transmission-telegram-private-bot.git
 cd transmission-telegram-private-bot-master
 docker build -t meshchaninov/transmission-bot .
-docker create --name transmission-bot \
+docker create \
+--name transmission-bot \
 -e TOKEN=<token> \
 -e ACCESS=<access> \
 -e TRANSMISSION_URL=<transmission_url> \
@@ -35,6 +36,7 @@ docker create --name transmission-bot \
 -e SOCKS5_ADDRESS=<socks5_address> \
 --restart unless-stopped \
 meshchaninov/transmission-bot
+docker run -d transmission-bot
 ```
 
 Каждое из значений:
