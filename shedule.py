@@ -1,6 +1,7 @@
 import datetime
 import os
 import sched
+import schedule
 import time
 from functools import wraps
 from threading import Thread
@@ -17,38 +18,12 @@ tc = TransmissionConnection(os.environ.get('TRANSMISSION_URL', 'localhost'), os.
 
 torrents, _ = tc.get_torrents()
 
-def asyncs(func):
-    @wraps(func)
-    def async_func(*args, **kwargs):
-        func_hl = Thread(target=func, args=args, kwargs=kwargs)
-        func_hl.start()
-        return func_hl
-    return async_func
-
-
-def schedule(interval):
-    def decorator(func):
-        def periodic(scheduler, interval, action, actionargs=()):
-            scheduler.enter(interval, 1, periodic,
-                            (scheduler, interval, action, actionargs))
-            action(*actionargs)
-
-        @wraps(func)
-        def wrap(*args, **kwargs):
-            scheduler = sched.scheduler(time.time, time.sleep)
-            periodic(scheduler, interval, func)
-            scheduler.run()
-        return wrap
-    return decorator
-
 
 def send_message(message):
     for user in ACCESS:
         bot.send_message(user, message)
 
 
-@asyncs
-@schedule(TIME_SHEDULE_SEC)
 def periodic_event():
     global torrents
     old_tor_hash = {t.hashStr: t for t in torrents}
@@ -62,4 +37,7 @@ def periodic_event():
     torrents = new_torrents
 
 if __name__ == "__main__":
-    periodic_event()
+    schedule.every(TIME_SHEDULE_SEC).seconds.do()
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
