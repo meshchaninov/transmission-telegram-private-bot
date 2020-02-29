@@ -9,7 +9,7 @@ mccabe==0.6.1
 pylint==2.4.4
 PySocks==1.7.1
 pyTelegramBotAPI==3.6.7
-requests==2.18.4
+requests==2.20.0
 schedule==0.6.0
 six==1.14.0
 transmissionrpc==0.11
